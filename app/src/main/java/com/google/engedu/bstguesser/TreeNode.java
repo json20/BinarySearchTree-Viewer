@@ -37,13 +37,17 @@ public class TreeNode {
         right = null;
     }
 
-    public void insert(int valueToInsert) {
+    public int insert(int valueToInsert) {
+        int height2 = 0;
+        if ((left == null) && (right == null)) {
+            height2 = 1;
+        }
         if (valueToInsert < value) {
             if (left == null) {
                 left = new TreeNode(valueToInsert);
             }
             else {
-                left.insert(valueToInsert);
+                height2 = left.insert(valueToInsert) + 1;
             }
         }
         else {
@@ -51,9 +55,13 @@ public class TreeNode {
                 right = new TreeNode(valueToInsert);
             }
             else {
-                right.insert(valueToInsert);
+                height2 = right.insert(valueToInsert) + 1;
             }
         }
+        if (height2 > height) {
+            height = height2;
+        }
+        return height2;
     }
 
 
